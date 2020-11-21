@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="nav nav-main">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/users/register" class="nav-item">Register</a></li>
+            <li><a href="/users/login" class="nav-item">Login</a></li>
+        </ul>
+    </nav>
+
+    <form class="form" method="POST">
+        {{if ne (len .Messages) 0}}
+        {{$messages := index .Messages 0}}
+        {{range $messages.Message}}
+        <div class="alert alert-danger form-group">
+            <ul>
+                <li style="color: #e75252">{{.}}</li>
+            </ul>
+        </div>
+        {{end}}
+        {{end}}
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Log in</button>
+    </form>
+</body>
+</html>
