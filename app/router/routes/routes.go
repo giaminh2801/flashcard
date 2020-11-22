@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"go-flashcard/app/config"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -19,8 +20,15 @@ func Load() []Route {
 	return routes
 }
 
-func SetupRoutes(r *mux.Router) *mux.Router {
+func LoadStatic(r *mux.Router) {
+	fs := http.FileServer(http.Dir("./app" + config.STATIC_DIR))
+	r.PathPrefix(config.STATIC_DIR).Handler(http.StripPrefix(config.STATIC_DIR, fs))
+}
 
+func SetupRoutes(r *mux.Router) *mux.Router {
+	//Load static
+	LoadStatic(r)
+	//Load routes
 	for _, route := range Load() {
 		r.HandleFunc(route.URI, route.Handler).Methods(route.Method)
 	}

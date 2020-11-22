@@ -7,6 +7,6 @@ import (
 )
 
 func New() *mux.Router {
-	r := mux.NewRouter()
+	r := mux.NewRouter().StrictSlash(true)
 	return routes.SetupRoutes(r)
 }

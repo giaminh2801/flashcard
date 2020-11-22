@@ -1,5 +1,6 @@
 package config
 
 const (
-	PORT = 8080
+	PORT       = 8080
+	STATIC_DIR = "/static/"
 )

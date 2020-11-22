@@ -1,12 +1,12 @@
 package utils
 
-type Level int
+type Level string
 
 const (
-	Info Level = iota
-	Success
-	Warning
-	Danger
+	Info    Level = "info"
+	Success Level = "success"
+	Warning Level = "warning"
+	Danger  Level = "danger"
 )
 
 type Messages struct {
@@ -28,3 +28,18 @@ var (
 		Type:    Danger,
 	}
 )
+
+func (self *Messages) AddMessage(msg string) {
+	switch self.Type {
+	case "info":
+		MessagesInfo.Message = append(MessagesInfo.Message, msg)
+	case "danger":
+		MessagesDanger.Message = append(MessagesDanger.Message, msg)
+	case "success":
+		MessagesSuccess.Message = append(MessagesSuccess.Message, msg)
+	}
+}
+
+func (self *Messages) ClearMessage() {
+	self.Message = make([]string, 0)
+}

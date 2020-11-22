@@ -21,33 +21,28 @@ func (self *User) Validate(action string, form *utils.Form) bool {
 	case "create":
 		if user != nil {
 			valid = false
-			utils.MessagesDanger.Message = append(utils.MessagesDanger.Message, "Email already exists")
+			form.Messages.AddMessage("Email already exists")
 		}
 		if form.Fields.Get("password") != form.Fields.Get("password2") {
 			valid = false
-			utils.MessagesDanger.Message = append(utils.MessagesDanger.Message, "Passwords didn't match")
+			form.Messages.AddMessage("Passwords didn't match")
 		}
 		if valid {
-			utils.MessagesSuccess.Message = append(utils.MessagesSuccess.Message, "Your account has been created. You can now login")
+			form.Messages = utils.MessagesSuccess
+			form.Messages.AddMessage("Your account has been created. You can now login")
 
 			self.Nickname = form.Fields.Get("nickname")
 			self.Email = form.Fields.Get("email")
 			self.Password = form.Fields.Get("password")
 
-			form.Messages = append(form.Messages, utils.MessagesSuccess)
-		} else {
-			form.Messages = append(form.Messages, utils.MessagesDanger)
 		}
 	case "login":
 		if user == nil {
 			valid = false
-			utils.MessagesDanger.Message = append(utils.MessagesDanger.Message, "Email doesn't exist")
+			form.Messages.AddMessage("Email doesn't exist")
 		} else if user.Password != form.Fields.Get("password") {
 			valid = false
-			utils.MessagesDanger.Message = append(utils.MessagesDanger.Message, "Password wasn't correct. Please try again!")
-		}
-		if !valid {
-			form.Messages = append(form.Messages, utils.MessagesDanger)
+			form.Messages.AddMessage("Password is incorrect. Please try again")
 		}
 	}
 

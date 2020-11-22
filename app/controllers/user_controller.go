@@ -10,7 +10,7 @@ import (
 
 func UserHandler(fn func(http.ResponseWriter, *http.Request, *utils.Form)) http.HandlerFunc {
 	form := &utils.Form{}
-	form.Messages = make([]*utils.Messages, 0)
+	form.Messages = &utils.Messages{}
 
 	return func(w http.ResponseWriter, r *http.Request) {
 		err := r.ParseForm()
@@ -30,6 +30,8 @@ func ShowRegister(w http.ResponseWriter, r *http.Request, form *utils.Form) {
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request, form *utils.Form) {
 	user := &models.User{}
+	form.Messages.ClearMessage()
+	form.Messages = utils.MessagesDanger
 	valid := user.Validate("create", form)
 
 	if !valid {
@@ -41,11 +43,14 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request, form *utils.Form) {
 }
 
 func ShowLogin(w http.ResponseWriter, r *http.Request, form *utils.Form) {
+	form.Messages = utils.MessagesSuccess
 	templates.RenderTemplate(w, "login", form)
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request, form *utils.Form) {
 	user := &models.User{}
+	form.Messages.ClearMessage()
+	form.Messages = utils.MessagesDanger
 	valid := user.Validate("login", form)
 
 	if !valid {

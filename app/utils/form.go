@@ -4,5 +4,5 @@ import "net/url"
 
 type Form struct {
 	Fields   url.Values
-	Messages []*Messages
+	Messages *Messages
 }

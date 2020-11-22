@@ -15,10 +15,10 @@
     </nav>
 
     <form class="form" method="POST">
-        {{if ne (len .Messages) 0}}
-        {{$messages := index .Messages 0}}
+        {{if ne (.Messages) nil}}
+        {{$messages := .Messages}}
         {{range $messages.Message}}
-        <div class="alert alert-danger form-group">
+        <div class="alert alert-{{$messages.Type}} form-group">
             <ul>
                 <li style="color: #e75252">{{.}}</li>
             </ul>
