@@ -1,0 +1,25 @@
+.alert{
+    padding: 0.8rem 2rem;
+    box-sizing: border-box;
+
+    &-success{
+        color: #287D3C;
+        background-color: #EDF9f0;
+        border: 2px #5aca75 solid;
+    }
+    &-danger{
+        color: #da1414;
+        background-color: #feefef;
+        border: 2px #f48989 solid;
+    }
+    &-info{
+        color: #2e5aac;
+        background-color: #eef2fa;
+        border: 2px #89a7e0 solid;
+    }
+    &-warning{
+        color: #b95000;
+        background-color: #fff4ec;
+        border: 2px #ff8f39 solid;
+    }
+}

@@ -1,0 +1,18 @@
+
+//colors
+$primary-color: #FE6442;
+$secondary-color: #FF7A00;
+$background-color-dark: #383f48;
+$dark-color: #272c33;
+$light-color: white;
+$background-color-light:#eef5f9;
+
+//text
+.text{
+    &-xlg{
+        font-size: 4rem;
+    }
+    &-mdm{
+        font-size: 1.2rem;
+    }
+}

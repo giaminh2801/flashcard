@@ -1,0 +1,28 @@
+.btn{
+    padding: 0.7rem 1.7rem;
+    font-weight: bold;
+
+    &-primary{
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        transition: all ease 0.3s;
+
+        &:hover{
+            cursor: pointer;
+            background-color:#fe6442ce;
+        }
+    }
+
+    &-trans{
+        background-color: inherit;
+        color: white;
+        border: 2px white solid;
+        transition: all ease 0.3s;
+
+        &:hover{
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.253);
+        }
+    }
+}
